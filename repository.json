@@ -50,9 +50,9 @@
     "build_cmds": ["gcc -O3 -march=native -o sl sl.c -lncurses -ltinfo"]
   },
   "fastfetch": {
-    "version": "latest",
+    "version": "2.58.0",
     "description": "A lightning-fast, highly customizable system info script.",
-    "url": "https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-amd64.tar.gz",
+    "url": "https://github.com/fastfetch-cli/fastfetch/releases/download/2.58.0/fastfetch-linux-amd64.tar.gz",
     "source_url": "",
     "source_dir": "",
     "dependencies": [],
@@ -65,7 +65,7 @@
       "cp /etc/fastfetch/config.jsonc /etc/skel/.config/fastfetch/config.jsonc",
       "chmod 644 /usr/share/frontier/logo.png"
     ]
-  },
+  }
   "waybar": {
     "version": "0.12.0",
     "description": "Highly customizable Wayland bar for Sway and Wlroots based compositors.",
