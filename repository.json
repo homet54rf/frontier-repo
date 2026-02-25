@@ -65,7 +65,7 @@
       "cp /etc/fastfetch/config.jsonc /etc/skel/.config/fastfetch/config.jsonc",
       "chmod 644 /usr/share/frontier/logo.png"
     ]
-  }
+  },
   "waybar": {
     "version": "0.12.0",
     "description": "Highly customizable Wayland bar for Sway and Wlroots based compositors.",
