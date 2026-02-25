@@ -50,9 +50,9 @@
     "build_cmds": ["gcc -O3 -march=native -o sl sl.c -lncurses -ltinfo"]
   },
   "fastfetch": {
-    "version": "2.34.1",
+    "version": "latest",
     "description": "A lightning-fast, highly customizable system info script.",
-    "url": "https://github.com/fastfetch-cli/fastfetch/releases/download/v2.34.1/fastfetch-linux-amd64.tar.gz",
+    "url": "https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-amd64.tar.gz",
     "source_url": "",
     "source_dir": "",
     "dependencies": [],
