@@ -279,13 +279,6 @@
     "source_dir": "eza-0.18.14",
     "dependencies": [
       "cargo"
-    ],"eza-src": {
-    "version": "0.18.14",
-    "url": "",
-    "source_url": "https://github.com/eza-community/eza/archive/refs/tags/v0.18.14.tar.gz",
-    "source_dir": "eza-0.18.14",
-    "dependencies": [
-      "cargo"
     ],
     "binary_name": "target/release/eza",
     "build_cmds": [
