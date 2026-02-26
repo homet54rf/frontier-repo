@@ -1,89 +1,102 @@
 {
-  "wayland": {
-    "version": "1.22.0",
-    "description": "Core Wayland display server protocol.",
-    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
-    "source_url": "",
-    "source_dir": "",
-    "dependencies": [],
-    "binary_name": "fzf",
-    "build_cmds": []
-  },
-  "wlroots": {
-    "version": "0.17.0",
-    "description": "A modular Wayland compositor library.",
-    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
-    "source_url": "",
-    "source_dir": "",
-    "dependencies": ["wayland"],
-    "binary_name": "fzf",
-    "build_cmds": []
-  },
-  "hyprland": {
-    "version": "main",
-    "description": "A highly customizable dynamic tiling Wayland compositor.",
-    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
-    "source_url": "",
-    "source_dir": "",
-    "dependencies": ["wayland", "wlroots"],
-    "binary_name": "fzf",
-    "build_cmds": []
-  },
-  "fzf": {
-    "version": "0.68.0",
-    "description": "A general-purpose command-line fuzzy finder.",
-    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
-    "source_url": "",
-    "source_dir": "",
-    "dependencies": [],
-    "binary_name": "fzf",
-    "build_cmds": []
-  },
-  "sl": {
-    "version": "5.02",
-    "description": "A joke command that drives a steam locomotive across your terminal.",
-    "url": "",
-    "source_url": "https://github.com/mtoyoda/sl/archive/refs/heads/master.tar.gz",
-    "source_dir": "sl-master",
-    "dependencies": [],
-    "binary_name": "sl",
-    "build_cmds": ["gcc -O3 -march=native -o sl sl.c -lncurses -ltinfo"]
-  },
   "fastfetch": {
     "version": "2.58.0",
-    "description": "A lightning-fast, highly customizable system info script.",
+    "description": "Binary version of the fast system info tool.",
     "url": "https://github.com/fastfetch-cli/fastfetch/releases/download/2.58.0/fastfetch-linux-amd64.tar.gz",
     "source_url": "",
     "source_dir": "",
     "dependencies": [],
     "binary_name": "fastfetch-linux-amd64/usr/bin/fastfetch",
-    "build_cmds": [],
-    "post_install": [
-      "mkdir -p /usr/share/frontier /etc/fastfetch /etc/skel/.config/fastfetch",
-      "curl -sLo /usr/share/frontier/logo.png https://raw.githubusercontent.com/homet54rf/frontier-repo/main/configs/frontier-logo.png",
-      "curl -sLo /etc/fastfetch/config.jsonc https://raw.githubusercontent.com/homet54rf/frontier-repo/main/configs/config.jsonc",
-      "cp /etc/fastfetch/config.jsonc /etc/skel/.config/fastfetch/config.jsonc",
-      "chmod 644 /usr/share/frontier/logo.png"
-    ]
-  },
-  "waybar": {
-    "version": "0.12.0",
-    "description": "Highly customizable Wayland bar for Sway and Wlroots based compositors.",
-    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
-    "source_url": "",
-    "source_dir": "",
-    "dependencies": ["wayland"],
-    "binary_name": "fzf",
     "build_cmds": []
   },
-  "crafty": {
-    "version": "4.0",
-    "description": "A web-based Minecraft server manager and controller.",
-    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
+  "fastfetch-src": {
+    "version": "2.58.0",
+    "description": "Source version of Fastfetch, optimized for your CPU.",
+    "url": "",
+    "source_url": "https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/2.58.0.tar.gz",
+    "source_dir": "fastfetch-2.58.0",
+    "dependencies": ["cmake", "yyjson"],
+    "binary_name": "build/fastfetch",
+    "build_cmds": ["mkdir -p build", "cd build", "cmake ..", "make -j16"]
+  },
+  "btop": {
+    "version": "1.3.2",
+    "description": "Pre-compiled resource monitor (Binary).",
+    "url": "https://github.com/aristocratos/btop/releases/download/v1.3.2/btop-x86_64-linux-musl.tbz",
     "source_url": "",
     "source_dir": "",
     "dependencies": [],
-    "binary_name": "fzf",
+    "binary_name": "btop/bin/btop",
     "build_cmds": []
+  },
+  "btop-src": {
+    "version": "1.3.2",
+    "description": "Resource monitor compiled from source.",
+    "url": "",
+    "source_url": "https://github.com/aristocratos/btop/archive/refs/tags/v1.3.2.tar.gz",
+    "source_dir": "btop-1.3.2",
+    "dependencies": [],
+    "binary_name": "bin/btop",
+    "build_cmds": ["make -j16", "make PREFIX=./ install"]
+  },
+  "cava-src": {
+    "version": "0.10.1",
+    "description": "Audio visualizer (Source only - needs local audio libs).",
+    "url": "",
+    "source_url": "https://github.com/karlstav/cava/archive/refs/tags/0.10.1.tar.gz",
+    "source_dir": "cava-0.10.1",
+    "dependencies": ["fftw", "ncurses"],
+    "binary_name": "cava",
+    "build_cmds": ["./autogen.sh", "./configure", "make -j16"]
+  },
+  "starship": {
+    "version": "1.22.1",
+    "description": "The lightning-fast shell prompt (Binary).",
+    "url": "https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-musl.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "starship",
+    "build_cmds": []
+  },
+  "starship-src": {
+    "version": "1.22.1",
+    "description": "Starship prompt compiled via Rust/Cargo.",
+    "url": "",
+    "source_url": "https://github.com/starship/starship/archive/refs/tags/v1.22.1.tar.gz",
+    "source_dir": "starship-1.22.1",
+    "dependencies": ["rust"],
+    "binary_name": "target/release/starship",
+    "build_cmds": ["cargo build --release"]
+  },
+  "pipes-src": {
+    "version": "1.3.0",
+    "description": "Terminal pipes screensaver (Source).",
+    "url": "",
+    "source_url": "https://github.com/pipeseroni/pipes.sh/archive/refs/tags/v1.3.0.tar.gz",
+    "source_dir": "pipes.sh-1.3.0",
+    "dependencies": [],
+    "binary_name": "pipes.sh",
+    "build_cmds": ["make PREFIX=./ install"]
+  },
+  "yazi-src": {
+    "version": "0.4.2",
+    "description": "Blazing fast terminal file manager (Source).",
+    "url": "",
+    "source_url": "https://github.com/sxyazi/yazi/archive/refs/tags/v0.4.2.tar.gz",
+    "source_dir": "yazi-0.4.2",
+    "dependencies": ["rust"],
+    "binary_name": "target/release/yazi",
+    "build_cmds": ["cargo build --release --locked"]
+  },
+  "hyfetch": {
+    "version": "1.4.11",
+    "description": "Fastfetch fork with pride flags and custom colors (Python).",
+    "url": "https://github.com/hykilpikonna/hyfetch/archive/refs/tags/1.4.11.tar.gz",
+    "source_url": "",
+    "source_dir": "hyfetch-1.4.11",
+    "dependencies": ["python", "fastfetch"],
+    "binary_name": "hyfetch",
+    "build_cmds": ["python3 setup.py install --prefix=./"]
   }
 }
