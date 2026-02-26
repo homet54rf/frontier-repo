@@ -1,17 +1,47 @@
-"fastfetch": {
-    "version": "2.58.0",
-    "description": "A lightning-fast, highly customizable system info script.",
-    "url": "https://github.com/fastfetch-cli/fastfetch/releases/download/2.58.0/fastfetch-linux-amd64.tar.gz",
+{
+  "wayland": {
+    "version": "1.22.0",
+    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
     "source_url": "",
     "source_dir": "",
     "dependencies": [],
-    "binary_name": "fastfetch-linux-amd64/usr/bin/fastfetch",
-    "build_cmds": [],
-    "post_install": [
-      "mkdir -p /usr/share/frontier /etc/fastfetch /etc/skel/.config/fastfetch",
-      "curl -sLo /usr/share/frontier/logo.png https://raw.githubusercontent.com/homet54rf/frontier-repo/main/configs/frontier-logo.png",
-      "curl -sLo /etc/fastfetch/config.jsonc https://raw.githubusercontent.com/homet54rf/frontier-repo/main/configs/config.jsonc",
-      "cp /etc/fastfetch/config.jsonc /etc/skel/.config/fastfetch/config.jsonc",
-      "chmod 644 /usr/share/frontier/logo.png"
-    ]
+    "binary_name": "fzf",
+    "build_cmds": []
+  },
+  "wlroots": {
+    "version": "0.17.0",
+    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": ["wayland"],
+    "binary_name": "fzf",
+    "build_cmds": []
+  },
+  "hyprland": {
+    "version": "main",
+    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": ["wayland", "wlroots"],
+    "binary_name": "fzf",
+    "build_cmds": []
+  },
+  "fzf": {
+    "version": "0.68.0",
+    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "fzf",
+    "build_cmds": []
+  },
+  "sl": {
+    "version": "5.02",
+    "url": "",
+    "source_url": "https://github.com/mtoyoda/sl/archive/refs/heads/master.tar.gz",
+    "source_dir": "sl-master",
+    "dependencies": [],
+    "binary_name": "sl",
+    "build_cmds": ["gcc -O3 -march=native -o sl sl.c -lncurses -ltinfo"]
   }
+}
