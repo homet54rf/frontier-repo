@@ -1,30 +1,46 @@
 {
   "wayland": {
-    "version": "1.22.0",
-    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
-    "source_url": "",
-    "source_dir": "",
+    "version": "1.23.0",
+    "url": "https://gitlab.freedesktop.org/wayland/wayland/-/releases/1.23.0/downloads/wayland-1.23.0.tar.xz",
+    "source_url": "https://gitlab.freedesktop.org/wayland/wayland.git",
+    "source_dir": "wayland",
     "dependencies": [],
-    "binary_name": "fzf",
-    "build_cmds": []
+    "binary_name": "wayland-scanner",
+    "build_cmds": [
+      "meson setup build",
+      "ninja -C build"
+    ]
   },
   "wlroots": {
-    "version": "0.17.0",
-    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
-    "source_url": "",
-    "source_dir": "",
-    "dependencies": ["wayland"],
-    "binary_name": "fzf",
-    "build_cmds": []
+    "version": "0.18.0",
+    "url": "https://gitlab.freedesktop.org/wlroots/wlroots/-/releases/0.18.0/downloads/wlroots-0.18.0.tar.gz",
+    "source_url": "https://gitlab.freedesktop.org/wlroots/wlroots.git",
+    "source_dir": "wlroots",
+    "dependencies": [
+      "wayland"
+    ],
+    "binary_name": "libwlroots.so",
+    "build_cmds": [
+      "meson setup build",
+      "ninja -C build"
+    ]
   },
   "hyprland": {
-    "version": "main",
-    "url": "https://github.com/junegunn/fzf/releases/download/v0.68.0/fzf-0.68.0-linux_amd64.tar.gz",
-    "source_url": "",
-    "source_dir": "",
-    "dependencies": ["wayland", "wlroots"],
-    "binary_name": "fzf",
-    "build_cmds": []
+    "version": "0.53.3",
+    "url": "https://github.com/hyprwm/Hyprland/releases/download/v0.53.3/Hyprland-v0.53.3.tar.gz",
+    "source_url": "https://github.com/hyprwm/Hyprland/archive/refs/tags/v0.53.3.tar.gz",
+    "source_dir": "Hyprland-0.53.3",
+    "dependencies": [
+      "wayland",
+      "wlroots",
+      "hyprlang",
+      "hyprutils"
+    ],
+    "binary_name": "Hyprland",
+    "build_cmds": [
+      "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release",
+      "cmake --build build -j$(nproc)"
+    ]
   },
   "fzf": {
     "version": "0.68.0",
@@ -35,33 +51,743 @@
     "binary_name": "fzf",
     "build_cmds": []
   },
+  "fzf-src": {
+    "version": "0.68.0",
+    "url": "",
+    "source_url": "https://github.com/junegunn/fzf/archive/refs/tags/v0.68.0.tar.gz",
+    "source_dir": "fzf-0.68.0",
+    "dependencies": [
+      "go"
+    ],
+    "binary_name": "fzf",
+    "build_cmds": [
+      "go build -o fzf main.go"
+    ]
+  },
   "sl": {
-    "version": "5.02",
+    "version": "5.05",
     "url": "",
     "source_url": "https://github.com/mtoyoda/sl/archive/refs/heads/master.tar.gz",
     "source_dir": "sl-master",
-    "dependencies": [],
+    "dependencies": [
+      "ncurses"
+    ],
     "binary_name": "sl",
-    "build_cmds": ["gcc -O3 -march=native -o sl sl.c -lncurses -ltinfo"]
+    "build_cmds": [
+      "gcc -O3 -march=native -o sl sl.c -lncurses -ltinfo"
+    ]
   },
   "fastfetch": {
-    "version": "2.34.1",
-    "url": "https://github.com/fastfetch-cli/fastfetch/releases/download/2.34.1/fastfetch-linux-amd64.tar.gz",
+    "version": "2.59.0",
+    "url": "https://github.com/fastfetch-cli/fastfetch/releases/download/2.59.0/fastfetch-linux-amd64.tar.gz",
     "source_url": "",
     "source_dir": "",
     "dependencies": [],
-    "binary_name": "fastfetch-linux-amd64/usr/bin/fastfetch",
+    "binary_name": "fastfetch",
     "build_cmds": []
   },
   "fastfetch-src": {
-    "version": "2.58.0",
+    "version": "2.59.0",
     "url": "",
-    "source_url": "https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/2.58.0.tar.gz",
-    "source_dir": "",
-    "dependencies": [],
+    "source_url": "https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/2.59.0.tar.gz",
+    "source_dir": "fastfetch-2.59.0",
+    "dependencies": [
+      "cmake"
+    ],
     "binary_name": "fastfetch",
     "build_cmds": [
-      "sh -c 'cd fastfetch-* && cmake -S . -B build && cmake --build build -j12 && cp build/fastfetch ../'"
+      "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release",
+      "cmake --build build -j$(nproc)",
+      "cp build/fastfetch ."
+    ]
+  },
+  "kitty": {
+    "version": "0.45.0",
+    "url": "https://github.com/kovidgoyal/kitty/releases/download/v0.45.0/kitty-0.45.0-x86_64.txz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "bin/kitty",
+    "build_cmds": []
+  },
+  "kitty-src": {
+    "version": "0.45.0",
+    "url": "",
+    "source_url": "https://github.com/kovidgoyal/kitty/archive/refs/tags/v0.45.0.tar.gz",
+    "source_dir": "kitty-0.45.0",
+    "dependencies": [
+      "python",
+      "harfbuzz",
+      "zlib"
+    ],
+    "binary_name": "kitty/launcher/kitty",
+    "build_cmds": [
+      "python3 setup.py linux-package"
+    ]
+  },
+  "waybar": {
+    "version": "0.13.0",
+    "url": "https://github.com/Alexays/Waybar/releases/download/0.13.0/waybar-linux-amd64.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "waybar",
+    "build_cmds": []
+  },
+  "waybar-src": {
+    "version": "0.13.0",
+    "url": "",
+    "source_url": "https://github.com/Alexays/Waybar/archive/refs/tags/0.13.0.tar.gz",
+    "source_dir": "Waybar-0.13.0",
+    "dependencies": [
+      "wayland",
+      "wlroots",
+      "gtkmm3",
+      "fmt",
+      "spdlog"
+    ],
+    "binary_name": "build/waybar",
+    "build_cmds": [
+      "meson setup build",
+      "ninja -C build"
+    ]
+  },
+  "rofi": {
+    "version": "2.0.0",
+    "url": "https://github.com/davatorium/rofi/releases/download/2.0.0/rofi-2.0.0.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [
+      "wayland",
+      "pango",
+      "cairo"
+    ],
+    "binary_name": "rofi",
+    "build_cmds": []
+  },
+  "rofi-src": {
+    "version": "2.0.0",
+    "url": "",
+    "source_url": "https://github.com/davatorium/rofi/releases/download/2.0.0/rofi-2.0.0.tar.gz",
+    "source_dir": "rofi-2.0.0",
+    "dependencies": [
+      "wayland",
+      "pango",
+      "cairo",
+      "glib"
+    ],
+    "binary_name": "build/rofi",
+    "build_cmds": [
+      "meson setup build",
+      "ninja -C build"
+    ]
+  },
+  "grim": {
+    "version": "1.4.1",
+    "url": "",
+    "source_url": "https://git.sr.ht/~emersion/grim/archive/v1.4.1.tar.gz",
+    "source_dir": "grim-v1.4.1",
+    "dependencies": [
+      "wayland",
+      "wayland-protocols"
+    ],
+    "binary_name": "build/grim",
+    "build_cmds": [
+      "meson setup build",
+      "ninja -C build"
+    ]
+  },
+  "ripgrep": {
+    "version": "14.1.0",
+    "url": "https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "rg",
+    "build_cmds": []
+  },
+  "ripgrep-src": {
+    "version": "14.1.0",
+    "url": "",
+    "source_url": "https://github.com/BurntSushi/ripgrep/archive/refs/tags/14.1.0.tar.gz",
+    "source_dir": "ripgrep-14.1.0",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/rg",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "fd": {
+    "version": "10.1.0",
+    "url": "https://github.com/sharkdp/fd/releases/download/v10.1.0/fd-v10.1.0-x86_64-unknown-linux-gnu.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "fd",
+    "build_cmds": []
+  },
+  "fd-src": {
+    "version": "10.1.0",
+    "url": "",
+    "source_url": "https://github.com/sharkdp/fd/archive/refs/tags/v10.1.0.tar.gz",
+    "source_dir": "fd-10.1.0",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/fd",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "bat": {
+    "version": "0.24.0",
+    "url": "https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-x86_64-unknown-linux-gnu.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "bat",
+    "build_cmds": []
+  },
+  "bat-src": {
+    "version": "0.24.0",
+    "url": "",
+    "source_url": "https://github.com/sharkdp/bat/archive/refs/tags/v0.24.0.tar.gz",
+    "source_dir": "bat-0.24.0",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/bat",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "eza": {
+    "version": "0.18.14",
+    "url": "https://github.com/eza-community/eza/releases/download/v0.18.14/eza_x86_64-unknown-linux-gnu.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "eza",
+    "build_cmds": []
+  },
+  "eza-src": {
+    "version": "0.18.14",
+    "url": "",
+    "source_url": "https://github.com/eza-community/eza/archive/refs/tags/v0.18.14.tar.gz",
+    "source_dir": "eza-0.18.14",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/eza",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "jq": {
+    "version": "1.7.1",
+    "url": "https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-amd64",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "jq-linux-amd64",
+    "build_cmds": []
+  },
+  "jq-src": {
+    "version": "1.7.1",
+    "url": "",
+    "source_url": "https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-1.7.1.tar.gz",
+    "source_dir": "jq-1.7.1",
+    "dependencies": [
+      "make",
+      "gcc"
+    ],
+    "binary_name": "jq",
+    "build_cmds": [
+      "./configure",
+      "make -j$(nproc)"
+    ]
+  },
+  "zoxide": {
+    "version": "0.9.4",
+    "url": "https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "zoxide",
+    "build_cmds": []
+  },
+  "zoxide-src": {
+    "version": "0.9.4",
+    "url": "",
+    "source_url": "https://github.com/ajeetdsouza/zoxide/archive/refs/tags/v0.9.4.tar.gz",
+    "source_dir": "zoxide-0.9.4",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/zoxide",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "starship": {
+    "version": "1.19.0",
+    "url": "https://github.com/starship/starship/releases/download/v1.19.0/starship-x86_64-unknown-linux-gnu.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "starship",
+    "build_cmds": []
+  },
+  "starship-src": {
+    "version": "1.19.0",
+    "url": "",
+    "source_url": "https://github.com/starship/starship/archive/refs/tags/v1.19.0.tar.gz",
+    "source_dir": "starship-1.19.0",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/starship",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "neovim": {
+    "version": "0.9.5",
+    "url": "https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "nvim-linux64/bin/nvim",
+    "build_cmds": []
+  },
+  "neovim-src": {
+    "version": "0.9.5",
+    "url": "",
+    "source_url": "https://github.com/neovim/neovim/archive/refs/tags/v0.9.5.tar.gz",
+    "source_dir": "neovim-0.9.5",
+    "dependencies": [
+      "cmake",
+      "make",
+      "gettext",
+      "ninja"
+    ],
+    "binary_name": "build/bin/nvim",
+    "build_cmds": [
+      "make CMAKE_BUILD_TYPE=Release"
+    ]
+  },
+  "btop": {
+    "version": "1.3.2",
+    "url": "https://github.com/aristocratos/btop/releases/download/v1.3.2/btop-x86_64-linux-musl.tbz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "btop/bin/btop",
+    "build_cmds": []
+  },
+  "btop-src": {
+    "version": "1.3.2",
+    "url": "",
+    "source_url": "https://github.com/aristocratos/btop/archive/refs/tags/v1.3.2.tar.gz",
+    "source_dir": "btop-1.3.2",
+    "dependencies": [
+      "make",
+      "gcc"
+    ],
+    "binary_name": "bin/btop",
+    "build_cmds": [
+      "make -j$(nproc)"
+    ]
+  },
+  "lazygit": {
+    "version": "0.42.0",
+    "url": "https://github.com/jesseduffield/lazygit/releases/download/v0.42.0/lazygit_0.42.0_Linux_x86_64.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "lazygit",
+    "build_cmds": []
+  },
+  "lazygit-src": {
+    "version": "0.42.0",
+    "url": "",
+    "source_url": "https://github.com/jesseduffield/lazygit/archive/refs/tags/v0.42.0.tar.gz",
+    "source_dir": "lazygit-0.42.0",
+    "dependencies": [
+      "go"
+    ],
+    "binary_name": "lazygit",
+    "build_cmds": [
+      "go build -o lazygit ."
+    ]
+  },
+  "gh": {
+    "version": "2.49.0",
+    "url": "https://github.com/cli/cli/releases/download/v2.49.0/gh_2.49.0_linux_amd64.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "gh_2.49.0_linux_amd64/bin/gh",
+    "build_cmds": []
+  },
+  "gh-src": {
+    "version": "2.49.0",
+    "url": "",
+    "source_url": "https://github.com/cli/cli/archive/refs/tags/v2.49.0.tar.gz",
+    "source_dir": "cli-2.49.0",
+    "dependencies": [
+      "go",
+      "make"
+    ],
+    "binary_name": "bin/gh",
+    "build_cmds": [
+      "make"
+    ]
+  },
+  "zellij": {
+    "version": "0.40.1",
+    "url": "https://github.com/zellij-org/zellij/releases/download/v0.40.1/zellij-x86_64-unknown-linux-musl.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "zellij",
+    "build_cmds": []
+  },
+  "zellij-src": {
+    "version": "0.40.1",
+    "url": "",
+    "source_url": "https://github.com/zellij-org/zellij/archive/refs/tags/v0.40.1.tar.gz",
+    "source_dir": "zellij-0.40.1",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/zellij",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "delta": {
+    "version": "0.17.0",
+    "url": "https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-x86_64-unknown-linux-gnu.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "delta-0.17.0-x86_64-unknown-linux-gnu/delta",
+    "build_cmds": []
+  },
+  "delta-src": {
+    "version": "0.17.0",
+    "url": "",
+    "source_url": "https://github.com/dandavison/delta/archive/refs/tags/0.17.0.tar.gz",
+    "source_dir": "delta-0.17.0",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/delta",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "dust": {
+    "version": "0.9.0",
+    "url": "https://github.com/bootandy/dust/releases/download/v0.9.0/dust-v0.9.0-x86_64-unknown-linux-gnu.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "dust-v0.9.0-x86_64-unknown-linux-gnu/dust",
+    "build_cmds": []
+  },
+  "dust-src": {
+    "version": "0.9.0",
+    "url": "",
+    "source_url": "https://github.com/bootandy/dust/archive/refs/tags/v0.9.0.tar.gz",
+    "source_dir": "dust-0.9.0",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/dust",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "duf": {
+    "version": "0.11.0",
+    "url": "https://github.com/muesli/duf/releases/download/v0.11.0/duf_0.11.0_linux_x86_64.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "duf",
+    "build_cmds": []
+  },
+  "duf-src": {
+    "version": "0.11.0",
+    "url": "",
+    "source_url": "https://github.com/muesli/duf/archive/refs/tags/v0.11.0.tar.gz",
+    "source_dir": "duf-0.11.0",
+    "dependencies": [
+      "go"
+    ],
+    "binary_name": "duf",
+    "build_cmds": [
+      "go build -o duf ."
+    ]
+  },
+  "procs": {
+    "version": "0.14.5",
+    "url": "https://github.com/dalance/procs/releases/download/v0.14.5/procs-v0.14.5-x86_64-linux.zip",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "procs",
+    "build_cmds": []
+  },
+  "procs-src": {
+    "version": "0.14.5",
+    "url": "",
+    "source_url": "https://github.com/dalance/procs/archive/refs/tags/v0.14.5.tar.gz",
+    "source_dir": "procs-0.14.5",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/procs",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "bottom": {
+    "version": "0.9.6",
+    "url": "https://github.com/ClementTsang/bottom/releases/download/0.9.6/bottom_x86_64-unknown-linux-gnu.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "btm",
+    "build_cmds": []
+  },
+  "bottom-src": {
+    "version": "0.9.6",
+    "url": "",
+    "source_url": "https://github.com/ClementTsang/bottom/archive/refs/tags/0.9.6.tar.gz",
+    "source_dir": "bottom-0.9.6",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/btm",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "tealdeer": {
+    "version": "1.6.1",
+    "url": "https://github.com/dbrgn/tealdeer/releases/download/v1.6.1/tealdeer-linux-x86_64-musl",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "tealdeer-linux-x86_64-musl",
+    "build_cmds": []
+  },
+  "tealdeer-src": {
+    "version": "1.6.1",
+    "url": "",
+    "source_url": "https://github.com/dbrgn/tealdeer/archive/refs/tags/v1.6.1.tar.gz",
+    "source_dir": "tealdeer-1.6.1",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/tldr",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "tokei": {
+    "version": "12.1.2",
+    "url": "https://github.com/XAMPPRocky/tokei/releases/download/v12.1.2/tokei-x86_64-unknown-linux-gnu.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "tokei",
+    "build_cmds": []
+  },
+  "tokei-src": {
+    "version": "12.1.2",
+    "url": "",
+    "source_url": "https://github.com/XAMPPRocky/tokei/archive/refs/tags/v12.1.2.tar.gz",
+    "source_dir": "tokei-12.1.2",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/tokei",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "xh": {
+    "version": "0.21.0",
+    "url": "https://github.com/ducaale/xh/releases/download/v0.21.0/xh-v0.21.0-x86_64-unknown-linux-musl.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "xh-v0.21.0-x86_64-unknown-linux-musl/xh",
+    "build_cmds": []
+  },
+  "xh-src": {
+    "version": "0.21.0",
+    "url": "",
+    "source_url": "https://github.com/ducaale/xh/archive/refs/tags/v0.21.0.tar.gz",
+    "source_dir": "xh-0.21.0",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/xh",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "nushell": {
+    "version": "0.93.0",
+    "url": "https://github.com/nushell/nushell/releases/download/0.93.0/nu-0.93.0-x86_64-unknown-linux-gnu.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "nu-0.93.0-x86_64-unknown-linux-gnu/nu",
+    "build_cmds": []
+  },
+  "nushell-src": {
+    "version": "0.93.0",
+    "url": "",
+    "source_url": "https://github.com/nushell/nushell/archive/refs/tags/0.93.0.tar.gz",
+    "source_dir": "nushell-0.93.0",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/nu",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "lsd": {
+    "version": "1.1.2",
+    "url": "https://github.com/lsd-rs/lsd/releases/download/v1.1.2/lsd-v1.1.2-x86_64-unknown-linux-gnu.tar.gz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "lsd-v1.1.2-x86_64-unknown-linux-gnu/lsd",
+    "build_cmds": []
+  },
+  "lsd-src": {
+    "version": "1.1.2",
+    "url": "",
+    "source_url": "https://github.com/lsd-rs/lsd/archive/refs/tags/v1.1.2.tar.gz",
+    "source_dir": "lsd-1.1.2",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/lsd",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "helix": {
+    "version": "24.03",
+    "url": "https://github.com/helix-editor/helix/releases/download/24.03/helix-24.03-x86_64-linux.tar.xz",
+    "source_url": "",
+    "source_dir": "",
+    "dependencies": [],
+    "binary_name": "helix-24.03-x86_64-linux/hx",
+    "build_cmds": []
+  },
+  "helix-src": {
+    "version": "24.03",
+    "url": "",
+    "source_url": "https://github.com/helix-editor/helix/archive/refs/tags/24.03.tar.gz",
+    "source_dir": "helix-24.03",
+    "dependencies": [
+      "cargo"
+    ],
+    "binary_name": "target/release/hx",
+    "build_cmds": [
+      "cargo build --release"
+    ]
+  },
+  "slurp": {
+    "version": "1.5.0",
+    "url": "",
+    "source_url": "https://github.com/emersion/slurp/archive/refs/tags/v1.5.0.tar.gz",
+    "source_dir": "slurp-1.5.0",
+    "dependencies": [
+      "wayland",
+      "meson",
+      "ninja"
+    ],
+    "binary_name": "build/slurp",
+    "build_cmds": [
+      "meson setup build",
+      "ninja -C build"
+    ]
+  },
+  "swaybg": {
+    "version": "1.2.1",
+    "url": "",
+    "source_url": "https://github.com/swaywm/swaybg/archive/refs/tags/v1.2.1.tar.gz",
+    "source_dir": "swaybg-1.2.1",
+    "dependencies": [
+      "wayland",
+      "meson",
+      "ninja"
+    ],
+    "binary_name": "build/swaybg",
+    "build_cmds": [
+      "meson setup build",
+      "ninja -C build"
+    ]
+  },
+  "wl-clipboard": {
+    "version": "2.2.1",
+    "url": "",
+    "source_url": "https://github.com/bugaevc/wl-clipboard/archive/refs/tags/v2.2.1.tar.gz",
+    "source_dir": "wl-clipboard-2.2.1",
+    "dependencies": [
+      "wayland",
+      "meson",
+      "ninja"
+    ],
+    "binary_name": "build/wl-copy",
+    "build_cmds": [
+      "meson setup build",
+      "ninja -C build"
+    ]
+  },
+  "mako": {
+    "version": "1.9.0",
+    "url": "",
+    "source_url": "https://github.com/emersion/mako/archive/refs/tags/v1.9.0.tar.gz",
+    "source_dir": "mako-1.9.0",
+    "dependencies": [
+      "wayland",
+      "meson",
+      "ninja"
+    ],
+    "binary_name": "build/mako",
+    "build_cmds": [
+      "meson setup build",
+      "ninja -C build"
+    ]
+  },
+  "swayidle": {
+    "version": "1.8.0",
+    "url": "",
+    "source_url": "https://github.com/swaywm/swayidle/archive/refs/tags/1.8.0.tar.gz",
+    "source_dir": "swayidle-1.8.0",
+    "dependencies": [
+      "wayland",
+      "meson",
+      "ninja"
+    ],
+    "binary_name": "build/swayidle",
+    "build_cmds": [
+      "meson setup build",
+      "ninja -C build"
     ]
   }
 }
