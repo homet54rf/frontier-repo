@@ -17,7 +17,13 @@
     "source_dir": "fastfetch-2.58.0",
     "dependencies": ["cmake", "yyjson"],
     "binary_name": "build/fastfetch",
-    "build_cmds": ["mkdir -p build", "cd build", "cmake ..", "make -j16"]
+    "build_cmds": [
+      "cd fastfetch-2.58.0", 
+      "mkdir -p build", 
+      "cd build", 
+      "cmake ..", 
+      "make -j16"
+    ]
   },
   "btop": {
     "version": "1.3.2",
