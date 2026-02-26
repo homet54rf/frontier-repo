@@ -396,7 +396,7 @@
       "make",
       "gcc"
     ],
-    "binary_name": "bin/btop",
+    "binary_name": "btop-1.3.2/bin/btop", 
     "build_cmds": [
       "make -j$(nproc)"
     ]
