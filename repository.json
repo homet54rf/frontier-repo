@@ -24,7 +24,7 @@
       "cmake ..", 
       "make -j16"
     ]
-  },
+  }
   "btop": {
     "version": "1.3.2",
     "description": "Pre-compiled resource monitor (Binary).",
