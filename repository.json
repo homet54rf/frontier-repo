@@ -403,7 +403,7 @@
       "make",
       "gcc"
     ],
-    "binary_name": "bin/btop", 
+    "binary_name": "bin/btop",
     "build_cmds": [
       "make -j$(nproc)"
     ]
