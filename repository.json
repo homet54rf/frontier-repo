@@ -785,8 +785,9 @@
       "ninja"
     ],
     "binary_name": "build/swayidle",
-    "build_cmds": [
-      "meson setup build",
-      "ninja -C build"
-    ]
-  }
+   "build_cmds": [
+        "make"
+      ]
+    },
+    "some-other-package": {
+      "version": "1.0",
