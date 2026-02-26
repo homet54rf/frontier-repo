@@ -18,11 +18,11 @@
     "dependencies": ["cmake", "yyjson"],
     "binary_name": "build/fastfetch",
     "build_cmds": [
-      "cd fastfetch-2.58.0", 
-      "mkdir -p build", 
-      "cd build", 
-      "cmake ..", 
-      "make -j16"
+      "cd fastfetch-2.58.0",
+      "mkdir -p build",
+      "cd build",
+      "cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local",
+      "make -j12"
     ]
   }
   "btop": {
