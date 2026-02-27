@@ -823,10 +823,10 @@
     ]
   },
   "calamares-src": {
-    "version": "3.3.15",
+    "version": "3.3.14",
     "url": "",
-    "source_url": "https://github.com/calamares/calamares/releases/download/v3.3.15/calamares-3.3.15.tar.gz",
-    "source_dir": "calamares-3.3.15",
+    "source_url": "https://github.com/calamares/calamares/archive/refs/tags/v3.3.14.tar.gz",
+    "source_dir": "calamares-3.3.14",
     "dependencies": [
       "python-src",
       "boost-src"
