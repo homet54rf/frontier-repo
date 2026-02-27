@@ -789,5 +789,55 @@
       "meson setup build",
       "ninja -C build"
     ]
+  },
+  "python-src": {
+    "version": "3.12.3",
+    "url": "",
+    "source_url": "https://www.python.org/ftp/python/3.12.3/Python-3.12.3.tar.xz",
+    "source_dir": "Python-3.12.3",
+    "dependencies": [],
+    "binary_name": "python",
+    "build_cmds": [
+      "./configure --enable-optimizations",
+      "make -j$(nproc)"
+    ],
+    "post_install": [
+      "make install"
+    ]
+  },
+  "boost-src": {
+    "version": "1.85.0",
+    "url": "",
+    "source_url": "https://archives.boost.io/release/1.85.0/source/boost_1_85_0.tar.gz",
+    "source_dir": "boost_1_85_0",
+    "dependencies": [
+      "python-src"
+    ],
+    "binary_name": "b2",
+    "build_cmds": [
+      "./bootstrap.sh --with-python=python3",
+      "./b2 -j$(nproc)"
+    ],
+    "post_install": [
+      "./b2 install"
+    ]
+  },
+  "calamares-src": {
+    "version": "3.3.15",
+    "url": "",
+    "source_url": "https://github.com/calamares/calamares/releases/download/v3.3.15/calamares-3.3.15.tar.gz",
+    "source_dir": "calamares-3.3.15",
+    "dependencies": [
+      "python-src",
+      "boost-src"
+    ],
+    "binary_name": "build/calamares",
+    "build_cmds": [
+      "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DWITH_PYTHON=ON",
+      "cmake --build build -j$(nproc)"
+    ],
+    "post_install": [
+      "cmake --install build"
+    ]
   }
 }
