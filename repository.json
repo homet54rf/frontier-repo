@@ -25,6 +25,34 @@
       "ninja -C build"
     ]
   },
+  "hyprutils": {
+    "version": "0.2.1",
+    "url": "",
+    "source_url": "https://github.com/hyprwm/hyprutils/archive/refs/tags/v0.2.1.tar.gz",
+    "source_dir": "hyprutils-0.2.1",
+    "dependencies": [
+      "cmake"
+    ],
+    "binary_name": "libhyprutils.so",
+    "build_cmds": [
+      "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release",
+      "cmake --build build -j$(nproc)"
+    ]
+  },
+  "hyprlang": {
+    "version": "0.5.2",
+    "url": "",
+    "source_url": "https://github.com/hyprwm/hyprlang/archive/refs/tags/v0.5.2.tar.gz",
+    "source_dir": "hyprlang-0.5.2",
+    "dependencies": [
+      "hyprutils"
+    ],
+    "binary_name": "libhyprlang.so",
+    "build_cmds": [
+      "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release",
+      "cmake --build build -j$(nproc)"
+    ]
+  },
   "hyprland": {
     "version": "0.53.3",
     "url": "https://github.com/hyprwm/Hyprland/releases/download/v0.53.3/Hyprland-v0.53.3.tar.gz",
@@ -790,6 +818,21 @@
       "ninja -C build"
     ]
   },
+  "openssl-src": {
+    "version": "3.3.0",
+    "url": "",
+    "source_url": "https://www.openssl.org/source/openssl-3.3.0.tar.gz",
+    "source_dir": "openssl-3.3.0",
+    "dependencies": [],
+    "binary_name": "apps/openssl",
+    "build_cmds": [
+      "./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib shared zlib-dynamic",
+      "make -j$(nproc)"
+    ],
+    "post_install": [
+      "make install"
+    ]
+  },
   "wget-src": {
     "version": "1.21.4",
     "url": "https://www.gnu.org/software/wget/",
@@ -809,21 +852,21 @@
     ]
   },
   "sudo-src": {
-  "version": "1.9.15p5",
-  "url": "https://www.sudo.ws/",
-  "source_url": "https://www.sudo.ws/dist/sudo-1.9.15p5.tar.gz",
-  "source_dir": "sudo-1.9.15p5",
-  "dependencies": [],
-  "binary_name": "src/sudo",
-  "build_cmds": [
-    "./configure --prefix=/usr --libexecdir=/usr/lib --without-pam --without-zlib --with-all-insults --with-env-editor --with-passprompt='[sudo] password for %p: '",
-    "make -j$(nproc)"
-  ],
-  "post_install": [
-    "make install",
-    "chmod -v 4755 /usr/bin/sudo"
-  ]
-},
+    "version": "1.9.15p5",
+    "url": "https://www.sudo.ws/",
+    "source_url": "https://www.sudo.ws/dist/sudo-1.9.15p5.tar.gz",
+    "source_dir": "sudo-1.9.15p5",
+    "dependencies": [],
+    "binary_name": "src/sudo",
+    "build_cmds": [
+      "./configure --prefix=/usr --libexecdir=/usr/lib --without-pam --without-zlib --with-all-insults --with-env-editor --with-passprompt='[sudo] password for %p: '",
+      "make -j1"
+    ],
+    "post_install": [
+      "make install",
+      "chmod -v 4755 /usr/bin/sudo"
+    ]
+  },
   "python-src": {
     "version": "3.12.3",
     "url": "",
