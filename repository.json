@@ -804,7 +804,8 @@
       "make -j$(nproc)"
     ],
     "post_install": [
-      "make install"
+      "make DESTDIR=/ install",
+      "ln -sfv /usr/bin/wget /usr/bin/wget-ssl"
     ]
   },
   "sudo-src": {
@@ -812,12 +813,10 @@
     "url": "https://www.sudo.ws/",
     "source_url": "https://www.sudo.ws/dist/sudo-1.9.15p5.tar.gz",
     "source_dir": "sudo-1.9.15p5",
-    "dependencies": [
-      "pam-src"
-    ],
+    "dependencies": [],
     "binary_name": "src/sudo",
     "build_cmds": [
-      "./configure --prefix=/usr --libexecdir=/usr/lib --with-securepath --with-all-insults --with-env-editor --with-pam --with-passprompt='[sudo] password for %p: '",
+      "./configure --prefix=/usr --libexecdir=/usr/lib --without-pam --with-all-insults --with-env-editor --with-passprompt='[sudo] password for %p: '",
       "make -j$(nproc)"
     ],
     "post_install": [
