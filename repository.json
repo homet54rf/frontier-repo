@@ -595,7 +595,7 @@
   },
   "bottom-src": {
     "version": "0.9.6",
-    "url": "",
+    "code": "",
     "source_url": "https://github.com/ClementTsang/bottom/archive/refs/tags/0.9.6.tar.gz",
     "source_dir": "bottom-0.9.6",
     "dependencies": [
@@ -836,7 +836,7 @@
   "wget-src": {
     "version": "1.21.4",
     "url": "https://www.gnu.org/software/wget/",
-    "source_url": "https://ftp.gnu.org/gnu/wget/wget-1.21.4.tar.gz",
+    "source_url": "https://mirrors.kernel.org/gnu/wget/wget-1.21.4.tar.gz",
     "source_dir": "wget-1.21.4",
     "dependencies": [
       "openssl-src"
@@ -859,7 +859,7 @@
     "dependencies": [],
     "binary_name": "src/sudo",
     "build_cmds": [
-      "./configure --prefix=/usr --libexecdir=/usr/lib --without-pam --without-zlib --with-all-insults --with-env-editor --with-passprompt='[sudo] password for %p: '",
+      "export CFLAGS='-g -O2 -Wno-error=incompatible-pointer-types' && ./configure --prefix=/usr --libexecdir=/usr/lib --without-pam --without-zlib --with-all-insults --with-env-editor --with-passprompt='[sudo] password for %p: '",
       "make -j1"
     ],
     "post_install": [
