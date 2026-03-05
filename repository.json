@@ -790,6 +790,41 @@
       "ninja -C build"
     ]
   },
+  "wget-src": {
+    "version": "1.21.4",
+    "url": "https://www.gnu.org/software/wget/",
+    "source_url": "https://ftp.gnu.org/gnu/wget/wget-1.21.4.tar.gz",
+    "source_dir": "wget-1.21.4",
+    "dependencies": [
+      "openssl-src"
+    ],
+    "binary_name": "src/wget",
+    "build_cmds": [
+      "./configure --prefix=/usr --sysconfdir=/etc --with-ssl=openssl",
+      "make -j$(nproc)"
+    ],
+    "post_install": [
+      "make install"
+    ]
+  },
+  "sudo-src": {
+    "version": "1.9.15p5",
+    "url": "https://www.sudo.ws/",
+    "source_url": "https://www.sudo.ws/dist/sudo-1.9.15p5.tar.gz",
+    "source_dir": "sudo-1.9.15p5",
+    "dependencies": [
+      "pam-src"
+    ],
+    "binary_name": "src/sudo",
+    "build_cmds": [
+      "./configure --prefix=/usr --libexecdir=/usr/lib --with-securepath --with-all-insults --with-env-editor --with-pam --with-passprompt='[sudo] password for %p: '",
+      "make -j$(nproc)"
+    ],
+    "post_install": [
+      "make install",
+      "chmod -v 4755 /usr/bin/sudo"
+    ]
+  },
   "python-src": {
     "version": "3.12.3",
     "url": "",
